@@ -4,9 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -22,14 +20,14 @@ class SplashActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
+        runApp()
     }
 
-    fun runApp() {
-//        if (isInternetConnected(this@SplashScreenActivity)) {
-//            val background: Thread = object : Thread() {
-//                override fun run() {
-//                    try {
-//                        sleep(1000)
+    private fun runApp() {
+            val background: Thread = object : Thread() {
+                override fun run() {
+                    try {
+                        sleep(1000)
 //                        val isLoggedIn =
 //                            sharedPreferenceManager.get(IS_LOGGED_IN_V2, Constants.N) as String
 //                        val hasGivenDataOnSignup =
@@ -69,12 +67,15 @@ class SplashActivity : AppCompatActivity() {
 //                            //Going to login screen
 //                            clearAnyData(false)
 //                        }
-//                    } catch (e: Exception) {
-//                        e.printStackTrace()
-//                    }
-//                }
-//            }
-//            background.start()
+                        val intent = Intent(this@SplashActivity, LoginActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+            background.start()
 //        } else {
 //            Toast.makeText(this@SplashScreenActivity, "Internet not connected.", Toast.LENGTH_LONG)
 //                .show()
