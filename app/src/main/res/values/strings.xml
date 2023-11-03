@@ -4,4 +4,9 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="welcome_to_medconnect">Welcome to MedConnect</string>
+    <string name="book_appointment">Book Appointment</string>
+    <string name="booked_appointments">Booked Appointments</string>
+    <string name="available_slots">Available Slots</string>
+    <string name="logout">Logout</string>
+    <string name="patient_dashboard">Patient Dashboard</string>
 </resources>
