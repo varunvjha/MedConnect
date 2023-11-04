@@ -1,5 +1,6 @@
 package com.flavumhealth.medconnect.ui.patient
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -24,6 +25,7 @@ class PatientActivity : AppCompatActivity() {
     private lateinit var appointmentAdapter: AppointmentAdapter
     private lateinit var bookedAdapter: BookedAppointmentAdapter
     private lateinit var patientId: String
+    private var successDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,11 +70,25 @@ class PatientActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btnBookAppointment).setOnClickListener {
             viewModel.bookAppointment(patientId)
+
+            showSuccessDialog()
         }
 
         viewModel.bookedAppointments.observe(this) { bookedAppointments ->
             bookedAdapter.setBookedAppointments(bookedAppointments)
         }
+    }
+
+    private fun showSuccessDialog() {
+        successDialog = Dialog(this)
+        successDialog?.setContentView(R.layout.dialog_success)
+
+        val okButton = successDialog?.findViewById<Button>(R.id.btnOk)
+        okButton?.setOnClickListener {
+            successDialog?.dismiss()
+        }
+
+        successDialog?.show()
     }
 
     private fun slotClicked(selectedSlot: Appointment) {

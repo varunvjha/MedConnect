@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvSuccessTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Success"
+        android:textSize="18sp"
+        android:fontFamily="@font/poppins_medium"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvSuccessMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thank you for booking a slot, your appointment has been booked successfully!"
+        android:layout_below="@id/tvSuccessTitle"
+        android:textSize="14sp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <Button
+        android:id="@+id/btnOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/tvSuccessMessage"
+        android:layout_marginTop="16dp"/>
+</RelativeLayout>
