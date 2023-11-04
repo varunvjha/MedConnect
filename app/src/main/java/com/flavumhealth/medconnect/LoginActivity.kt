@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.flavumhealth.medconnect.data.AppointmentRepository
 import com.flavumhealth.medconnect.data.RepositoryHolder
 import com.flavumhealth.medconnect.di.AppDatabase
+import com.flavumhealth.medconnect.ui.doctor.DoctorActivity
 import com.flavumhealth.medconnect.ui.patient.PatientActivity
 import com.google.android.material.textfield.TextInputEditText
 
@@ -38,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
                 if (userId.startsWith("P", ignoreCase = true)) {
                     intent = Intent(this, PatientActivity::class.java)
                 } else if (userId.startsWith("D", ignoreCase = true)) {
-                    //TODO doctor activity
+                    intent = Intent(this, DoctorActivity::class.java)
                 }
                 intent.putExtra("user_id", userId)
                 startActivity(intent)

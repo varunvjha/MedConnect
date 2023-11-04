@@ -24,19 +24,18 @@ class PatientViewModel(private val repository: AppointmentRepository) : ViewMode
         selectedAppointment = appointment
     }
 
-    fun bookAppointment() {
+    fun bookAppointment(patientId: String) {
         viewModelScope.launch {
             selectedAppointment?.let {
                 repository.bookAppointment(it)
                 Log.d("PatientViewModel", "Appointment booked: $it")
-                loadBookedAppointments()
+                loadBookedAppointments(patientId)
             }
         }
     }
 
-    private fun loadBookedAppointments() {
+    private fun loadBookedAppointments(patientId: String) {
         viewModelScope.launch {
-            val patientId = "P00001" // Replace with the actual patient ID
             repository.getBookedAppointments(patientId).observeForever { bookedAppointments ->
                 _bookedAppointments.postValue(bookedAppointments)
             }
@@ -45,5 +44,6 @@ class PatientViewModel(private val repository: AppointmentRepository) : ViewMode
 
     init {
         _availableSlots.value = MockDataGenerator.generateAppointments()
+        _bookedAppointments.value = emptyList()
     }
 }

@@ -1,5 +1,6 @@
 package com.flavumhealth.medconnect.ui.patient
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.flavumhealth.medconnect.LoginActivity
 import com.flavumhealth.medconnect.R
 import com.flavumhealth.medconnect.data.AppointmentRepository
 import com.flavumhealth.medconnect.data.RepositoryHolder
@@ -37,7 +39,9 @@ class PatientActivity : AppCompatActivity() {
         )[PatientViewModel::class.java]
 
         findViewById<TextView>(R.id.btnLogout).setOnClickListener {
-            finish()
+            val intent = Intent(this@PatientActivity, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
 
         appointmentAdapter = AppointmentAdapter (mutableListOf(), object: AppointmentSlotListener {
@@ -61,7 +65,7 @@ class PatientActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btnBookAppointment).setOnClickListener {
-            viewModel.bookAppointment()
+            viewModel.bookAppointment(patientId)
         }
 
         viewModel.bookedAppointments.observe(this) { bookedAppointments ->

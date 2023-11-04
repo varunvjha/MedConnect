@@ -1,5 +1,6 @@
 package com.flavumhealth.medconnect.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.flavumhealth.medconnect.data.model.Appointment
 import com.flavumhealth.medconnect.data.model.AppointmentStatus
@@ -34,6 +35,7 @@ class AppointmentRepository(private val appointmentDao: AppointmentDao) {
     }
 
     fun getAllAppointments(doctorId: String): LiveData<List<Appointment>> {
+        Log.d("DoctorAppointments", appointmentDao.getAllAppointments(doctorId).toString())
         return appointmentDao.getAllAppointments(doctorId)
     }
 }
