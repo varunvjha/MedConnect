@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.flavumhealth.medconnect.data.model.Appointment
 
-@Database(entities = [Appointment::class], version = 1, exportSchema = false)
+@Database(entities = [Appointment::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun appointmentDao(): AppointmentDao
@@ -23,10 +23,8 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context): AppDatabase {
             return Room.databaseBuilder(
-                context.applicationContext,
-                AppDatabase::class.java,
-                "medconnect_database"
-            ).build()
+                context.applicationContext, AppDatabase::class.java, "medconnect_database"
+            ).fallbackToDestructiveMigration().build()
         }
     }
 }

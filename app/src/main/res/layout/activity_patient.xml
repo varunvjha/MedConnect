@@ -4,69 +4,79 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/patient_dashboard"
-        android:textSize="24sp"
-        android:fontFamily="@font/poppins_medium"
-        android:layout_marginTop="36dp"/>
-
-    <TextView
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/logout"
-        android:gravity="center_vertical"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
-        android:fontFamily="@font/poppins_medium"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@id/tvTitle"
-        android:layout_alignBottom="@id/tvTitle"/>
-
-    <TextView
-        android:id="@+id/tvAvailableSlots"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/available_slots"
-        android:fontFamily="@font/poppins_medium"
-        android:textSize="18sp"
-        android:layout_below="@id/btnLogout"
-        android:layout_marginTop="24dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAvailableSlots"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvAvailableSlots"
-        android:layout_marginTop="8dp"/>
+        android:layout_height="match_parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnBookAppointment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/book_appointment"
-        android:fontFamily="@font/poppins_medium"
-        android:layout_below="@id/rvAvailableSlots"
-        android:layout_marginTop="24dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvBookedAppointments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/booked_appointments"
-        android:textSize="18sp"
-        android:layout_below="@id/btnBookAppointment"
-        android:layout_marginTop="24dp"/>
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/patient_dashboard"
+                android:textSize="24sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvBookedAppointments"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvBookedAppointments"
-        android:layout_marginTop="8dp"/>
+            <TextView
+                android:id="@+id/btnLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/tvTitle"
+                android:layout_alignBottom="@id/tvTitle"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center_vertical"
+                android:text="@string/logout"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAvailableSlots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnLogout"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/available_slots"
+                android:textSize="18sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAvailableSlots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvAvailableSlots"
+                android:layout_marginTop="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBookAppointment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rvAvailableSlots"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/book_appointment" />
+
+            <TextView
+                android:id="@+id/tvBookedAppointments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnBookAppointment"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/booked_appointments"
+                android:textSize="18sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBookedAppointments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvBookedAppointments"
+                android:layout_marginTop="8dp" />
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

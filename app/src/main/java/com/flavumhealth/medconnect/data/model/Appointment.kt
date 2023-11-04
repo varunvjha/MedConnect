@@ -7,9 +7,10 @@ import androidx.room.PrimaryKey
 data class Appointment(
     @PrimaryKey val id: String,
     val doctorId: String,
-    val patientId: String,
+    val doctorName: String,
+    var patientId: String? = null,
     val dateTime: String,
-    val status: AppointmentStatus
+    var status: AppointmentStatus
 )
 
 enum class AppointmentStatus {
