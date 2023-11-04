@@ -2,6 +2,7 @@ package com.flavumhealth.medconnect.ui.patient
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.flavumhealth.medconnect.R
 import com.flavumhealth.medconnect.data.AppointmentRepository
+import com.flavumhealth.medconnect.data.RepositoryHolder
 import com.flavumhealth.medconnect.ui.adapter.AppointmentAdapter
 import com.flavumhealth.medconnect.util.PatientViewModelFactory
 
@@ -20,12 +22,15 @@ class PatientActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient)
 
-        repository = intent.getSerializableExtra("repository") as AppointmentRepository
+        repository = RepositoryHolder.appointmentRepository
+            ?: throw IllegalStateException("Repository must be set before starting PatientActivity")
 
-        viewModel = ViewModelProvider(this, PatientViewModelFactory(repository)).get(PatientViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this, PatientViewModelFactory(repository)
+        ).get(PatientViewModel::class.java)
 
 
-        findViewById<Button>(R.id.btnLogout).setOnClickListener {
+        findViewById<TextView>(R.id.btnLogout).setOnClickListener {
             finish()
         }
 
@@ -46,10 +51,12 @@ class PatientActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btnBookAppointment).setOnClickListener {
-            val selectedSlot = viewModel.availableSlots.value?.get(0)
+            if (viewModel.availableSlots.value?.isNotEmpty() == true) {
+                val selectedSlot = viewModel.availableSlots.value?.get(0)
 
-            if (selectedSlot != null) {
-                viewModel.bookAppointment(selectedSlot)
+                if (selectedSlot != null) {
+                    viewModel.bookAppointment(selectedSlot)
+                }
             }
         }
 

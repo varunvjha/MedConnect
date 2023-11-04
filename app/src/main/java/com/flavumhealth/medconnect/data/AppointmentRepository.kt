@@ -5,6 +5,18 @@ import com.flavumhealth.medconnect.data.model.Appointment
 import com.flavumhealth.medconnect.di.AppointmentDao
 
 class AppointmentRepository(private val appointmentDao: AppointmentDao) {
+
+    companion object {
+        @Volatile
+        private var instance: AppointmentRepository? = null
+
+        fun getInstance(appointmentDao: AppointmentDao): AppointmentRepository {
+            return instance ?: synchronized(this) {
+                instance ?: AppointmentRepository(appointmentDao).also { instance = it }
+            }
+        }
+    }
+
     val availableSlots: LiveData<List<Appointment>> = appointmentDao.getAvailableSlots()
 
     suspend fun bookAppointment(appointment: Appointment) {
