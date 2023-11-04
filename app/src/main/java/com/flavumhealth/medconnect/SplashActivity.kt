@@ -27,46 +27,7 @@ class SplashActivity : AppCompatActivity() {
             val background: Thread = object : Thread() {
                 override fun run() {
                     try {
-                        sleep(1000)
-//                        val isLoggedIn =
-//                            sharedPreferenceManager.get(IS_LOGGED_IN_V2, Constants.N) as String
-//                        val hasGivenDataOnSignup =
-//                            sharedPreferenceManager.get(USER_DATA_UPDATED, Constants.N) as String
-//                        println("isLoggedIn : $isLoggedIn")
-//                        println("hasGivenDataOnSignup : $hasGivenDataOnSignup")
-//                        if (isLoggedIn.equals(Y, ignoreCase = true)) {
-//                            HelperMethods.isSessionValid(this@SplashScreenActivity) { response ->
-//                                val type: String =
-//                                    if (response.has(TYPE)) response.getString(TYPE) else BLANK
-//                                if (type.equals("danger", ignoreCase = true)) {
-//                                    Toast.makeText(
-//                                        this@SplashScreenActivity,
-//                                        "Your session has expired. Please login again.",
-//                                        Toast.LENGTH_LONG
-//                                    ).show()
-//                                    clearAnyData(true)
-//                                } else {
-//                                    if (hasGivenDataOnSignup.equals(Y, ignoreCase = true)) {
-//                                        //Going to dashboard
-//                                        val i =
-//                                            Intent(baseContext, MainActivity::class.java)
-//                                        i.flags =
-//                                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                                        startActivity(i)
-//                                    } else {
-//                                        //Going to edit/add info screen
-//                                        val i =
-//                                            Intent(baseContext, UserInfoActivity::class.java)
-//                                        i.flags =
-//                                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                                        startActivity(i)
-//                                    }
-//                                }
-//                            }
-//                        } else {
-//                            //Going to login screen
-//                            clearAnyData(false)
-//                        }
+                        sleep(1500)
                         val intent = Intent(this@SplashActivity, LoginActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
@@ -76,11 +37,5 @@ class SplashActivity : AppCompatActivity() {
                 }
             }
             background.start()
-//        } else {
-//            Toast.makeText(this@SplashScreenActivity, "Internet not connected.", Toast.LENGTH_LONG)
-//                .show()
-//            retry.setVisibility(View.VISIBLE)
-//            gif_relative_layout.setVisibility(View.GONE)
-//        }
     }
 }

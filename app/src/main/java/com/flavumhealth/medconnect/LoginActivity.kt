@@ -73,6 +73,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun isValidCredentials(userId: String, password: String): Boolean {
-        return (userId == "P00001" || userId == "D00001") && password == "password"
+        return (userId == "P00001" || userId == "P00002" || userId == "D00001") && password == "password"
     }
 }
