@@ -29,12 +29,12 @@ class PatientViewModel(private val repository: AppointmentRepository) : ViewMode
             selectedAppointment?.let {
                 repository.bookAppointment(it)
                 Log.d("PatientViewModel", "Appointment booked: $it")
-                loadBookedAppointments(patientId)
+//                loadBookedAppointments(patientId)
             }
         }
     }
 
-    private fun loadBookedAppointments(patientId: String) {
+    fun loadBookedAppointments(patientId: String) {
         viewModelScope.launch {
             repository.getBookedAppointments(patientId).observeForever { bookedAppointments ->
                 _bookedAppointments.postValue(bookedAppointments)

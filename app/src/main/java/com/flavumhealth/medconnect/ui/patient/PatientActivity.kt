@@ -38,6 +38,8 @@ class PatientActivity : AppCompatActivity() {
             this, PatientViewModelFactory(repository)
         )[PatientViewModel::class.java]
 
+        viewModel.loadBookedAppointments(patientId)
+
         findViewById<TextView>(R.id.btnLogout).setOnClickListener {
             val intent = Intent(this@PatientActivity, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
