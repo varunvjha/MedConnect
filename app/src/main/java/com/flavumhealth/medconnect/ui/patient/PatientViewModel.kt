@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class PatientViewModel(private val repository: AppointmentRepository) : ViewModel() {
 
-    private val _availableSlots = MutableLiveData<List<Appointment>>()
+    private val _availableSlots = repository.availableSlots
     val availableSlots: LiveData<List<Appointment>> get() = _availableSlots
 
     private val _bookedAppointments = MutableLiveData<List<Appointment>>()
@@ -43,7 +43,7 @@ class PatientViewModel(private val repository: AppointmentRepository) : ViewMode
     }
 
     init {
-        _availableSlots.value = MockDataGenerator.generateAppointments()
+//        _availableSlots.value = MockDataGenerator.generateAppointments()
         _bookedAppointments.value = emptyList()
     }
 }

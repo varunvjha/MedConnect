@@ -35,7 +35,7 @@ class AppointmentRepository(private val appointmentDao: AppointmentDao) {
     }
 
     fun getAllAppointments(doctorId: String): LiveData<List<Appointment>> {
-        Log.d("DoctorAppointments", appointmentDao.getAllAppointments(doctorId).toString())
-        return appointmentDao.getAllAppointments(doctorId)
+        Log.d("DoctorAppointments", appointmentDao.getAllBookedAppointments(doctorId).toString())
+        return appointmentDao.getAllBookedAppointments(doctorId)
     }
 }

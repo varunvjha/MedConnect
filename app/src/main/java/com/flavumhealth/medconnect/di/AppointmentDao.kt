@@ -15,12 +15,15 @@ interface AppointmentDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun bookAppointment(appointment: Appointment)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAppointment(appointment: Appointment)
+
     @Query("SELECT * FROM appointments WHERE patientId = :patientId")
     fun getBookedAppointments(patientId: String): LiveData<List<Appointment>>
 
     @Query("SELECT * FROM appointments WHERE doctorId = :doctorId AND status = 'PENDING'")
     fun getPendingAppointments(doctorId: String): LiveData<List<Appointment>>
 
-    @Query("SELECT * FROM appointments WHERE doctorId = :doctorId")
-    fun getAllAppointments(doctorId: String): LiveData<List<Appointment>>
+    @Query("SELECT * FROM appointments WHERE doctorId = :doctorId AND status = 'BOOKED'")
+    fun getAllBookedAppointments(doctorId: String): LiveData<List<Appointment>>
 }
